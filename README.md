@@ -1,17 +1,17 @@
 # glassbox-linalg
 
-Transparent, from-scratch implementations of classical linear algebra algorithms — see what's actually inside QR, SVD, and least squares instead of treating LAPACK as a black box.
+Transparent, from-scratch implementations of classical linear algebra algorithms to see what's actually inside QR, SVD, and least squares instead of treating LAPACK as a black box.
 
-This isn't meant to replace `numpy.linalg` or `scipy.linalg` — those are faster, more robust, and battle-tested. **This is a reference and benchmarking tool**: if you're implementing your own QR decomposition, eigenvalue solver, or SVD, you can validate correctness against these implementations and read through code that doesn't hide behind a single `lapack_*` call.
+This isn't meant to replace `numpy.linalg` or `scipy.linalg`. Those are faster, more robust, and battle-tested. **This is a reference and benchmarking tool**: if you're implementing your own QR decomposition, eigenvalue solver, or SVD, you can validate correctness against these implementations and read through code that doesn't hide behind a single `lapack_*` call.
 
 ## Why this exists
 
-Most linear algebra libraries call into LAPACK, which is fast but opaque — you can't easily see *why* an eigenvalue solver converges slowly, or what a Householder reflector is actually doing to a matrix. Every algorithm here is implemented directly in NumPy, with comments explaining the non-obvious parts (numerical stability tricks, convergence acceleration, etc.), so you can step through the actual math instead of a compiled binary.
+Most linear algebra libraries call into LAPACK, which is fast but opaque. You can't easily see *why* an eigenvalue solver converges slowly, or what a Householder reflector is actually doing to a matrix. Every algorithm here is implemented directly in NumPy, with comments explaining the non-obvious parts (numerical stability tricks, convergence acceleration, etc.), so you can step through the actual math instead of a compiled binary.
 
 ## What's implemented
 
 - **Householder QR decomposition** — `solvers/power_qr_svd.py`
-- **Symmetric QR algorithm with Wilkinson shift + deflation** for eigenvalue decomposition — converges in ~10s of iterations instead of hundreds, even for tightly clustered eigenvalue spectra
+- **Symmetric QR algorithm with Wilkinson shift + deflation** for eigenvalue decomposition, it converges in ~10s of iterations instead of hundreds, even for tightly clustered eigenvalue spectra
 - **SVD** via eigendecomposition of `AᵀA` (no bidiagonalization — intentionally simple, not the fastest approach)
 - **Least squares** solved via the SVD above (`lstsq`)
 
