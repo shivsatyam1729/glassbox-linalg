@@ -72,7 +72,7 @@ glassbox-linalg/
 
 ## Roadmap
 
-- [ ] Bidiagonalization-based SVD (faster than the current `AᵀA`-based approach)
+- [x] Bidiagonalization-based SVD (faster than the current `AᵀA`-based approach)
 - [ ] LU decomposition with partial pivoting
 - [ ] Cholesky decomposition
 - [ ] Conjugate gradient solver
